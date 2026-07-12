@@ -44,15 +44,15 @@ flowchart TD
 
 ## 模块职责说明
 
-| 模块 | 输入 shape | 输出 shape | 作用 |
-| --- | --- | --- | --- |
-| `Embedding` | `(B, T)` | `(B, T, C)` | 把 token id 查表为 token embedding。 |
-| `PositionalEncoding` | `(B, T, C)` | `(B, T, C)` | 给 token embedding 注入位置信息。 |
-| `Encoder` | `(B, T, C)` | `(B, T, C)` | 对输入序列进行 self-attention 编码。 |
-| `Decoder.mask_self_attention` | `(B, T, C)` | `(B, T, C)` | 使用 causal mask，只允许当前位置看见自己和历史 token。 |
-| `Decoder.cross_attention` | Q: `(B, T, C)`, K/V: `(B, T, C)` | `(B, T, C)` | 使用 decoder query 读取 encoder 输出。 |
-| `MLP` | `(B, T, C)` | `(B, T, C)` | 对每个 token 位置做前馈非线性变换。 |
-| `lm_head` | `(B, T, C)` | `(B, T, V)` | 把 hidden state 投影到词表空间，得到每个 token 的 logits。 |
+| 模块                            | 输入 shape                          | 输出 shape    | 作用                                                       |
+| ------------------------------- | ----------------------------------- | ------------- | ---------------------------------------------------------- |
+| `Embedding`                   | `(B, T)`                          | `(B, T, C)` | 把 token id 查表为 token embedding。                       |
+| `PositionalEncoding`          | `(B, T, C)`                       | `(B, T, C)` | 给 token embedding 注入位置信息。                          |
+| `Encoder`                     | `(B, T, C)`                       | `(B, T, C)` | 对输入序列进行 self-attention 编码。                       |
+| `Decoder.mask_self_attention` | `(B, T, C)`                       | `(B, T, C)` | 使用 causal mask，只允许当前位置看见自己和历史 token。     |
+| `Decoder.cross_attention`     | Q:`(B, T, C)`, K/V: `(B, T, C)` | `(B, T, C)` | 使用 decoder query 读取 encoder 输出。                     |
+| `MLP`                         | `(B, T, C)`                       | `(B, T, C)` | 对每个 token 位置做前馈非线性变换。                        |
+| `lm_head`                     | `(B, T, C)`                       | `(B, T, V)` | 把 hidden state 投影到词表空间，得到每个 token 的 logits。 |
 
 ## Shape 逐步解释
 
